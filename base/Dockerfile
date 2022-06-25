@@ -19,7 +19,7 @@ WORKDIR /toybox
 ENV TOYBOX_VERSION 0.8.7
 
 RUN set -eux; \
-	wget -O -q toybox.tgz "https://landley.net/toybox/downloads/toybox-$TOYBOX_VERSION.tar.gz"; \
+	wget -O toybox.tgz "https://landley.net/toybox/downloads/toybox-$TOYBOX_VERSION.tar.gz"; \
 	tar -xf toybox.tgz --strip-components=1; \
 	rm toybox.tgz
 
