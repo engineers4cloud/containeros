@@ -10,7 +10,7 @@ RUN set -eux; \
 	;
 
 # This is for testing filesystem-settings
-RUN ls -l /etc/
+#RUN ls -l /etc/
 
 WORKDIR /toybox
 
@@ -23,6 +23,7 @@ RUN set -eux; \
 	tar -xf toybox.tgz --strip-components=1; \
 	rm toybox.tgz
 
+RUN make defconfig
 RUN make ls
 # Make root-fs
 #RUN make root BUILTIN=1
