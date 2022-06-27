@@ -25,7 +25,7 @@ RUN set -eux; \
 
 RUN make defconfig
 RUN rm -f .config
-COPY config /toybox/
+COPY /slim/config /toybox/
 RUN mv config .config
 #RUN make ls pwd ps mkdir rm echo tail
 #RUN ls -l
