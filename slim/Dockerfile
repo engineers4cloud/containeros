@@ -12,7 +12,7 @@ RUN set -eux; \
 # This is for testing filesystem-settings
 #RUN ls -l /etc/
 
-WORKDIR /toybox
+WORKDIR /toybox_binarys
 
 # https://landley.net/toybox/downloads/?C=M;O=D
 # https://github.com/landley/toybox/releases
@@ -24,7 +24,7 @@ RUN set -eux; \
 	rm toybox.tgz
 
 RUN make defconfig
-RUN make ls
+RUN make ls pwd ps mkdir rm echo tail
 RUN ls -l
 # Make root-fs
 #RUN make root BUILTIN=1
