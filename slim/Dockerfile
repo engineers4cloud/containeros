@@ -23,18 +23,19 @@ RUN set -eux; \
 	tar -xf toybox.tgz --strip-components=1; \
 	rm toybox.tgz
 
+RUN make ls
 # Make root-fs
-RUN make root BUILTIN=1
+#RUN make root BUILTIN=1
 
 # Building nopriv group/user for Container
-RUN echo "nopriv:x:101:nopriv" >> /toybox/root/host/fs/etc/group
-RUN echo "nopriv:x:101:101:nopriv:/dev/null:/sbin/nologin" >> /toybox/root/host/fs/etc/passwd
-RUN ls -l /toybox/root/host/fs/etc/
+#RUN echo "nopriv:x:101:nopriv" >> /toybox/root/host/fs/etc/group
+#RUN echo "nopriv:x:101:101:nopriv:/dev/null:/sbin/nologin" >> /toybox/root/host/fs/etc/passwd
+#RUN ls -l /toybox/root/host/fs/etc/
 
 # adjusting filesystem-permissions
-RUN chmod -R 700 /toybox/root/host/fs/root
+#RUN chmod -R 700 /toybox/root/host/fs/root
 
-FROM scratch
-COPY --from=build /toybox/root/host/fs/ /
-USER nopriv
-CMD ["sh"]
+#FROM scratch
+#COPY --from=build /toybox/root/host/fs/ /
+#USER nopriv
+#CMD ["sh"]
