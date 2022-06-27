@@ -24,7 +24,9 @@ RUN set -eux; \
 	rm toybox.tgz
 
 RUN make defconfig
-COPY .config /toybox/
+RUN rm -f .config
+COPY config /toybox/
+RUN mv config .config
 #RUN make ls pwd ps mkdir rm echo tail
 #RUN ls -l
 # Make root-fs
