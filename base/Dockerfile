@@ -23,8 +23,8 @@ RUN set -eux; \
 	tar -xf toybox.tgz --strip-components=1; \
 	rm toybox.tgz
 
+# Make root-fs
 RUN make root BUILTIN=1
-# (we set "BUILTIN=1" to avoid cpio / initramfs creation because we aren't building / don't need a kernel)
 
 # Building nopriv group/user for Container
 RUN echo "nopriv:x:101:nopriv" >> /toybox/root/host/fs/etc/group
