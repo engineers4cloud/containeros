@@ -19,7 +19,7 @@ CONFIG_TOYBOX_HASTIMERS=y
 # Posix commands
 #
 # CONFIG_BASENAME is not set
-CONFIG_CAL is not set
+# CONFIG_CAL is not set
 CONFIG_CAT=y
 # CONFIG_CHGRP is not set
 CONFIG_CHOWN=y
