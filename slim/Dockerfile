@@ -25,6 +25,7 @@ RUN set -eux; \
 
 RUN make defconfig
 RUN make ls
+RUN ls -l
 # Make root-fs
 #RUN make root BUILTIN=1
 
