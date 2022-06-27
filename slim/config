@@ -3,7 +3,7 @@
 # ToyBox version: KCONFIG_VERSION
 # Mon Jun 27 12:59:13 2022
 #
-CONFIG_TOYBOX_CONTAINER=y
+# CONFIG_TOYBOX_CONTAINER is not set
 # CONFIG_TOYBOX_FIFREEZE is not set
 CONFIG_TOYBOX_ICONV=y
 CONFIG_TOYBOX_UTMPX=y
@@ -157,13 +157,13 @@ CONFIG_TAIL=y
 # CONFIG_MORE is not set
 # CONFIG_ROUTE is not set
 CONFIG_SH=y
-# CONFIG_CD is not set
+CONFIG_CD=y
 # CONFIG_DECLARE is not set
 # CONFIG_EXIT is not set
 # CONFIG_SET is not set
 # CONFIG_UNSET is not set
 # CONFIG_EVAL is not set
-# CONFIG_EXEC is not set
+CONFIG_EXEC=y
 # CONFIG_EXPORT is not set
 # CONFIG_JOBS is not set
 # CONFIG_LOCAL is not set
