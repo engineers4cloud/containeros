@@ -28,7 +28,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         context: .
-        file: ./base/Dockerfile
+        file: ./slim/Dockerfile
         platforms: linux/amd64
         tags: engineers4cloud/containeros:slim-dev
         push: true
