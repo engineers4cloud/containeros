@@ -35,10 +35,11 @@ RUN make root BUILTIN=1
 RUN echo "nopriv:x:101:nopriv" >> /toybox/root/host/fs/etc/group
 RUN echo "nopriv:x:101:101:nopriv:/dev/null:/sbin/nologin" >> /toybox/root/host/fs/etc/passwd
 
-# make/copy sh binary
+# rm links
+WORKDIR /toybox/root/host/fs/usr/sbin
+RUN rm -rf *
 WORKDIR /toybox/root/host/fs/usr/bin
 RUN ls -l
-#RUN rm -f a* b* n* o* r* u* v* w* x* y* z*
 RUN find . -type l -delete
 RUN ln -s toybox sh && ln -s toybox bash && ln -s toybox ls && ln -s toybox cat
 RUN ls -l
