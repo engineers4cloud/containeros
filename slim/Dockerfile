@@ -41,7 +41,7 @@ RUN rm -rf *
 WORKDIR /toybox/root/host/fs/usr/bin
 RUN ls -l
 RUN find . -type l -delete
-RUN ln -s toybox sh \
+RUN ln -s ../../bin/toybox id \
 && ln -s toybox bash \
 && ln -s toybox ls \
 && ln -s toybox cat \
@@ -61,4 +61,4 @@ RUN chmod -R 700 /toybox/root/host/fs/root
 FROM scratch
 COPY --from=build /toybox/root/host/fs/ /
 USER nopriv
-CMD ["sh"]
+CMD ["bash"]
