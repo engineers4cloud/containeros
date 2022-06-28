@@ -27,8 +27,7 @@ RUN make defconfig
 RUN rm -f .config
 COPY /slim/config /toybox/
 RUN mv config .config
-RUN make sh
-RUN ls -l
+
 # Make root-fs
 RUN make root BUILTIN=1
 
@@ -36,10 +35,10 @@ RUN make root BUILTIN=1
 RUN echo "nopriv:x:101:nopriv" >> /toybox/root/host/fs/etc/group
 RUN echo "nopriv:x:101:101:nopriv:/dev/null:/sbin/nologin" >> /toybox/root/host/fs/etc/passwd
 
-# copy sh binary
-RUN ls -l
-#RUN cp /toybox/sh /toybox/root/host/fs/usr/bin/
-#RUN ls -l /toybox/root/host/fs/usr/bin/
+# make/copy sh binary
+RUN make sh
+RUN cp sh /toybox/root/host/fs/usr/bin/
+RUN ls -l /toybox/root/host/fs/usr/bin/
 
 # adjusting filesystem-permissions
 RUN chmod -R 700 /toybox/root/host/fs/root
