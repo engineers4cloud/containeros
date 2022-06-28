@@ -37,6 +37,7 @@ RUN echo "nopriv:x:101:101:nopriv:/dev/null:/sbin/nologin" >> /toybox/root/host/
 
 # make/copy sh binary
 WORKDIR /toybox/root/host/fs/usr/bin
+RUN ls -l
 #RUN rm -f a* b* n* o* r* u* v* w* x* y* z*
 RUN find . -type l -delete
 RUN ls -l
