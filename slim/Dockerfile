@@ -61,4 +61,4 @@ RUN chmod -R 700 /toybox/root/host/fs/root
 FROM scratch
 COPY --from=build /toybox/root/host/fs/ /
 USER nopriv
-CMD ["bash"]
+CMD ["sh"]
