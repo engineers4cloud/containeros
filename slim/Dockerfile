@@ -35,6 +35,9 @@ RUN make root BUILTIN=1
 # Building nopriv group/user for Container
 RUN echo "nopriv:x:101:nopriv" >> /toybox/root/host/fs/etc/group
 RUN echo "nopriv:x:101:101:nopriv:/dev/null:/sbin/nologin" >> /toybox/root/host/fs/etc/passwd
+
+# copy sh binary
+RUN cp sh /toybox/root/host/fs/usr/bin/
 RUN ls -l /toybox/root/host/fs/usr/bin/
 
 # adjusting filesystem-permissions
