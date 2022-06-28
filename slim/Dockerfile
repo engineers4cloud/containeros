@@ -37,8 +37,9 @@ RUN echo "nopriv:x:101:nopriv" >> /toybox/root/host/fs/etc/group
 RUN echo "nopriv:x:101:101:nopriv:/dev/null:/sbin/nologin" >> /toybox/root/host/fs/etc/passwd
 
 # copy sh binary
-RUN cp /toybox/sh /toybox/root/host/fs/usr/bin/
-RUN ls -l /toybox/root/host/fs/usr/bin/
+RUN ls -l
+#RUN cp /toybox/sh /toybox/root/host/fs/usr/bin/
+#RUN ls -l /toybox/root/host/fs/usr/bin/
 
 # adjusting filesystem-permissions
 RUN chmod -R 700 /toybox/root/host/fs/root
