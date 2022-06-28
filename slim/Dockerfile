@@ -40,7 +40,7 @@ WORKDIR /toybox/root/host/fs/usr/bin
 RUN ls -l
 #RUN rm -f a* b* n* o* r* u* v* w* x* y* z*
 RUN find . -type l -delete
-RUN ln -s toybox sh
+RUN ln -s toybox sh && ln -s toybox bash && ln -s toybox ls && ln -s toybox cat
 RUN ls -l
 
 # adjusting filesystem-permissions
