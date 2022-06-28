@@ -23,10 +23,10 @@ RUN set -eux; \
 	tar -xf toybox.tgz --strip-components=1; \
 	rm toybox.tgz
 
-RUN make defconfig && cat .config
-RUN rm -f .config
-COPY /slim/config /toybox/
-RUN mv config .config
+#RUN make defconfig && cat .config
+#RUN rm -f .config
+#COPY /slim/config /toybox/
+#RUN mv config .config
 
 # Make root-fs
 RUN make root BUILTIN=1
@@ -36,8 +36,6 @@ RUN echo "nopriv:x:101:nopriv" >> /toybox/root/host/fs/etc/group
 RUN echo "nopriv:x:101:101:nopriv:/dev/null:/sbin/nologin" >> /toybox/root/host/fs/etc/passwd
 
 # make/copy sh binary
-#RUN make sh
-#RUN cp sh /toybox/root/host/fs/usr/bin/
 RUN ls -l /toybox/root/host/fs/usr/bin/
 
 # adjusting filesystem-permissions
