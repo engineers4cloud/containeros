@@ -27,7 +27,7 @@ RUN make defconfig
 RUN rm -f .config
 COPY /slim/config /toybox/
 RUN mv config .config
-#RUN make ls pwd ps mkdir rm echo tail
+RUN make sh
 #RUN ls -l
 # Make root-fs
 RUN make root BUILTIN=1
