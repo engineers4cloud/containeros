@@ -23,7 +23,7 @@ RUN set -eux; \
 	tar -xf toybox.tgz --strip-components=1; \
 	rm toybox.tgz
 
-RUN make defconfig
+RUN make defconfig && cat .config
 RUN rm -f .config
 COPY /slim/config /toybox/
 RUN mv config .config
