@@ -37,7 +37,7 @@ RUN echo "nopriv:x:101:101:nopriv:/dev/null:/sbin/nologin" >> /toybox/root/host/
 
 # make/copy sh binary
 WORKDIR /toybox/root/host/fs/usr/bin
-RUN rm -f a* b*
+RUN rm -f a* b* u* v* w* x* y* z*
 RUN ls -l
 
 # adjusting filesystem-permissions
