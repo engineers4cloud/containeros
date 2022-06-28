@@ -35,13 +35,24 @@ RUN make root BUILTIN=1
 RUN echo "nopriv:x:101:nopriv" >> /toybox/root/host/fs/etc/group
 RUN echo "nopriv:x:101:101:nopriv:/dev/null:/sbin/nologin" >> /toybox/root/host/fs/etc/passwd
 
-# rm links
+# rm links and generate new ones
 WORKDIR /toybox/root/host/fs/usr/sbin
 RUN rm -rf *
 WORKDIR /toybox/root/host/fs/usr/bin
 RUN ls -l
 RUN find . -type l -delete
-RUN ln -s toybox sh && ln -s toybox bash && ln -s toybox ls && ln -s toybox cat
+RUN ln -s toybox sh \
+&& ln -s toybox bash \
+&& ln -s toybox ls \
+&& ln -s toybox cat \
+&& ln -s toybox chmod \
+&& ln -s toybox chown \
+&& ln -s toybox cp \
+&& ln -s toybox ps \
+&& ln -s toybox pwd \
+&& ln -s toybox rm \
+&& ln -s toybox mv \
+&& ln -s ../../bin/toybox env
 RUN ls -l
 
 # adjusting filesystem-permissions
