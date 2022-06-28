@@ -28,7 +28,7 @@ RUN rm -f .config
 COPY /slim/config /toybox/
 RUN mv config .config
 RUN make sh
-#RUN ls -l
+RUN ls -l
 # Make root-fs
 RUN make root BUILTIN=1
 
