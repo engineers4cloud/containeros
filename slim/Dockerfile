@@ -32,8 +32,10 @@ RUN set -eux; \
 RUN make root BUILTIN=1
 
 # building new binarys
-RUN cat .config
-RUN make ls cat chmod chown cp ps pwd rm mv chsh id env
+RUN make clean && rm -f .config
+COPY /slim/config /toybox/
+
+#RUN make ls cat chmod chown cp ps pwd rm mv chsh id env
 
 # Building nopriv group/user for Container
 RUN echo "nopriv:x:101:nopriv" >> /toybox/root/host/fs/etc/group
@@ -46,20 +48,21 @@ WORKDIR /toybox/root/host/fs/usr/bin
 RUN ls -l
 #RUN find . -type l -delete
 RUN rm -rf *
-#RUN ln -s ../../bin/toybox id \
-#&& ln -s ../../bin/toybox env \
-#&& ln -s toybox sh \
-#&& ln -s toybox ls \
-#&& ln -s toybox cat \
-#&& ln -s toybox chmod \
-#&& ln -s toybox chown \
-#&& ln -s toybox cp \
-#&& ln -s toybox ps \
-#&& ln -s toybox pwd \
-#&& ln -s toybox rm \
-#&& ln -s toybox mv
-WORKDIR toybox
-RUN cp ls cat chmod chown cp ps pwd rm mv chsh id env /toybox/root/host/fs/usr/bin/
+RUN cp /toybox/toybox /toybox/root/host/fs/usr/bin/
+RUN ln -s ../../bin/toybox id \
+&& ln -s ../../bin/toybox env \
+&& ln -s toybox sh \
+&& ln -s toybox ls \
+&& ln -s toybox cat \
+&& ln -s toybox chmod \
+&& ln -s toybox chown \
+&& ln -s toybox cp \
+&& ln -s toybox ps \
+&& ln -s toybox pwd \
+&& ln -s toybox rm \
+&& ln -s toybox mv
+#WORKDIR toybox
+#RUN cp ls cat chmod chown cp ps pwd rm mv chsh id env /toybox/root/host/fs/usr/bin/
 RUN ls -l /toybox/root/host/fs/usr/bin/
 
 # adjusting filesystem-permissions
