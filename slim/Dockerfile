@@ -25,6 +25,7 @@ RUN set -eux; \
 
 # Loading .config
 RUN make defconfig && make list
+RUN make sh
 #COPY /slim/config.slim /toybox/
 #RUN mv config.slim .config
 
