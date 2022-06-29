@@ -33,7 +33,7 @@ RUN make root BUILTIN=1
 
 # building new binarys
 RUN cat .config
-RUN make ls cat chmod chown cp ps pwd rm mv bash id env
+RUN make ls cat chmod chown cp ps pwd rm mv chsh id env
 
 # Building nopriv group/user for Container
 RUN echo "nopriv:x:101:nopriv" >> /toybox/root/host/fs/etc/group
@@ -59,7 +59,7 @@ RUN rm -rf *
 #&& ln -s toybox rm \
 #&& ln -s toybox mv
 WORKDIR toybox
-RUN cp ls cat chmod chown cp ps pwd rm mv bash id env /toybox/root/host/fs/usr/bin/
+RUN cp ls cat chmod chown cp ps pwd rm mv chsh id env /toybox/root/host/fs/usr/bin/
 RUN ls -l /toybox/root/host/fs/usr/bin/
 
 # adjusting filesystem-permissions
