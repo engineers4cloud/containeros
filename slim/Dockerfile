@@ -33,7 +33,9 @@ RUN make root BUILTIN=1
 
 # building new binarys
 RUN make clean && rm -f .config
-COPY /slim/config /toybox/
+COPY /slim/config.slim /toybox/
+RUN mv config.slim .config
+RUN make defconfig
 
 #RUN make ls cat chmod chown cp ps pwd rm mv chsh id env
 
