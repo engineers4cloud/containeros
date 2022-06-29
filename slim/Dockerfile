@@ -35,7 +35,7 @@ RUN make root BUILTIN=1
 RUN make clean && rm -f .config
 COPY /slim/config.slim /toybox/
 RUN mv config.slim .config
-RUN make defconfig
+RUN make defconfig && make
 
 #RUN make ls cat chmod chown cp ps pwd rm mv chsh id env
 
