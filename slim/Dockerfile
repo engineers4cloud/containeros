@@ -28,7 +28,7 @@ RUN make root BUILTIN=1
 
 # building new binarys
 WORKDIR /binarys
-RUN wget -O http://landley.net/toybox/downloads/binaries/mkroot/0.8.7/x86_64.tgz && tar xfvz x86_64.tgz
+RUN wget http://landley.net/toybox/downloads/binaries/mkroot/0.8.7/x86_64.tgz && tar xfvz x86_64.tgz
 RUN rm -f x86_64.tgz && cd x86_64/fs/bin && ls -l
 
 # Building nopriv group/user for Container
