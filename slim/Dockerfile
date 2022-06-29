@@ -23,21 +23,12 @@ RUN set -eux; \
 	tar -xf toybox.tgz --strip-components=1; \
 	rm toybox.tgz
 
-#RUN make defconfig
-#RUN rm -f .config
-#COPY /slim/config /toybox/
-#RUN mv config .config
-
 # Make root-fs
 RUN make root BUILTIN=1
 
 # building new binarys
-RUN make clean && rm -f .config
-COPY /slim/config.slim /toybox/
-RUN mv config.slim .config
-RUN make
-
-#RUN make ls cat chmod chown cp ps pwd rm mv chsh id env
+WORKDIR /binarys
+RUN wget http://landley.net/toybox/downloads/binaries/mkroot/0.8.7/x86_64.tgz && tar xfvz x86_64.tgz && ls -l
 
 # Building nopriv group/user for Container
 RUN echo "nopriv:x:101:nopriv" >> /toybox/root/host/fs/etc/group
