@@ -32,7 +32,7 @@ RUN set -eux; \
 RUN make root BUILTIN=1
 
 # building new binarys
-RUN make clean && make defconfig
+RUN make clean && make defconfig && cat .config
 RUN make ls cat chmod chown cp ps pwd rm mv bash id env
 
 # Building nopriv group/user for Container
