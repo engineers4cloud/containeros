@@ -23,23 +23,6 @@ RUN set -eux; \
 	tar -xf toybox.tgz --strip-components=1; \
 	rm toybox.tgz
 
-# Loading .config
-RUN make defconfig && make list
-RUN make sh \
-&& make ls \
-&& make cat \
-&& make chown \
-&& make chmod \
-&& make cp \
-&& make pwd \
-&& make ps \
-&& make rm \
-&& make id \
-&& make env \
-&& ls
-#COPY /slim/config.slim /toybox/
-#RUN mv config.slim .config
-
 # Make root-fs
 RUN make root BUILTIN=1
 
@@ -51,10 +34,20 @@ RUN echo "nopriv:x:101:101:nopriv:/dev/null:/sbin/nologin" >> /toybox/root/host/
 WORKDIR /toybox/root/host/fs/usr/sbin
 RUN rm -rf *
 WORKDIR /toybox/root/host/fs/usr/bin
-RUN ls -l
-#RUN find . -type l -delete
 RUN rm -rf *
 WORKDIR toybox
+RUN make clean && make defconfig && make list
+RUN make sh \
+&& make ls \
+&& make cat \
+&& make chown \
+&& make chmod \
+&& make cp \
+&& make pwd \
+&& make ps \
+&& make rm \
+&& make id \
+&& make env
 RUN cp ls cat chmod chown cp ps pwd rm mv sh id env /toybox/root/host/fs/usr/bin/
 RUN ls -l /toybox/root/host/fs/usr/bin/
 
