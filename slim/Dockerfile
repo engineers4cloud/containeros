@@ -54,21 +54,8 @@ WORKDIR /toybox/root/host/fs/usr/bin
 RUN ls -l
 #RUN find . -type l -delete
 RUN rm -rf *
-RUN cp /toybox/toybox /toybox/root/host/fs/usr/bin/
-RUN ln -s ../../bin/toybox id \
-&& ln -s ../../bin/toybox env \
-&& ln -s toybox sh \
-&& ln -s toybox ls \
-&& ln -s toybox cat \
-&& ln -s toybox chmod \
-&& ln -s toybox chown \
-&& ln -s toybox cp \
-&& ln -s toybox ps \
-&& ln -s toybox pwd \
-&& ln -s toybox rm \
-&& ln -s toybox mv
-#WORKDIR toybox
-#RUN cp ls cat chmod chown cp ps pwd rm mv chsh id env /toybox/root/host/fs/usr/bin/
+WORKDIR toybox
+RUN cp ls cat chmod chown cp ps pwd rm mv sh id env /toybox/root/host/fs/usr/bin/
 RUN ls -l /toybox/root/host/fs/usr/bin/
 
 # adjusting filesystem-permissions
