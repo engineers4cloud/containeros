@@ -35,7 +35,7 @@ WORKDIR /toybox/root/host/fs/usr/sbin
 RUN rm -rf *
 WORKDIR /toybox/root/host/fs/usr/bin
 RUN rm -rf *
-WORKDIR toybox
+WORKDIR /toybox
 RUN make clean && make defconfig && make list
 RUN make sh \
 && make ls \
