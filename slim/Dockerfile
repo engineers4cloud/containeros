@@ -24,8 +24,9 @@ RUN set -eux; \
 	rm toybox.tgz
 
 # Loading .config
-COPY /slim/config.slim /toybox/
-RUN mv config.slim .config
+RUN make defconfig && make list
+#COPY /slim/config.slim /toybox/
+#RUN mv config.slim .config
 
 # Make root-fs
 RUN make root BUILTIN=1
