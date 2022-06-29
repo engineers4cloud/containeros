@@ -37,19 +37,19 @@ WORKDIR /toybox/root/host/fs/usr/bin
 RUN rm -rf *
 WORKDIR /toybox
 RUN make clean && make defconfig && make list
-RUN make sh \
-&& make ls \
-&& make cat \
-&& make chown \
-&& make chmod \
-&& make cp \
-&& make pwd \
-&& make ps \
-&& make rm \
-&& make mv \
-&& make id \
-&& make env
-RUN cp ls cat chmod chown cp ps pwd rm mv sh id env /toybox/root/host/fs/usr/bin/
+RUN make change sh \
+&& make change ls \
+&& make change cat \
+&& make change chown \
+&& make change chmod \
+&& make change cp \
+&& make change pwd \
+&& make change ps \
+&& make change rm \
+&& make change mv \
+&& make change id \
+&& make change env
+RUN cd change && cp ls cat chmod chown cp ps pwd rm mv sh id env /toybox/root/host/fs/usr/bin/
 RUN ls -l /toybox/root/host/fs/usr/bin/
 
 # adjusting filesystem-permissions
