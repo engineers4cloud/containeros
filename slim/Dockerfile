@@ -23,7 +23,7 @@ RUN set -eux; \
 	tar -xf toybox.tgz --strip-components=1; \
 	rm toybox.tgz
 
-RUN make defconfig
+#RUN make defconfig
 #RUN rm -f .config
 #COPY /slim/config /toybox/
 #RUN mv config .config
@@ -32,6 +32,7 @@ RUN make defconfig
 RUN make root BUILTIN=1
 
 # building new binarys
+RUN make clean && make defconfig
 RUN make ls cat chmod chown cp ps pwd rm mv bash id env
 
 # Building nopriv group/user for Container
