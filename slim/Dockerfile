@@ -46,6 +46,7 @@ RUN make sh \
 && make pwd \
 && make ps \
 && make rm \
+&& make mv \
 && make id \
 && make env
 RUN cp ls cat chmod chown cp ps pwd rm mv sh id env /toybox/root/host/fs/usr/bin/
