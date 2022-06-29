@@ -25,7 +25,18 @@ RUN set -eux; \
 
 # Loading .config
 RUN make defconfig && make list
-RUN make sh
+RUN make sh \
+&& make ls \
+&& make cat \
+&& make chown \
+&& make chmod \
+&& make cp \
+&& make pwd \
+&& make ps \
+&& make rm \
+&& make id \
+&& make env \
+&& ls
 #COPY /slim/config.slim /toybox/
 #RUN mv config.slim .config
 
