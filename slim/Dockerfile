@@ -10,7 +10,7 @@ RUN set -eux; \
 	;
 
 # This is for testing filesystem-settings
-#RUN ls -l /etc/
+RUN ls -l /lib/ld-musl-x86_64.so.1
 
 WORKDIR /toybox
 
