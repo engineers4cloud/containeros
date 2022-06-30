@@ -9,9 +9,6 @@ RUN set -eux; \
 		musl-dev \
 	;
 
-# This is for testing filesystem-settings
-#RUN ls -l /etc/
-
 WORKDIR /toybox
 
 # https://landley.net/toybox/downloads/?C=M;O=D
@@ -24,14 +21,36 @@ RUN set -eux; \
 	rm toybox.tgz
 
 # Make root-fs
-RUN make root BUILTIN=1
+RUN make defconfig && make root BUILTIN=1
 
 # Building nopriv group/user for Container
-RUN echo "nopriv:x:101:nopriv" >> /toybox/root/host/fs/etc/group
-RUN echo "nopriv:x:101:101:nopriv:/dev/null:/sbin/nologin" >> /toybox/root/host/fs/etc/passwd
-RUN ls -l /toybox/root/host/fs/usr/bin/
+RUN echo "nopriv:x:101:nopriv" >> /toybox/root/host/fs/etc/group \
+&& echo "nopriv:x:101:101:nopriv:/dev/null:/sbin/nologin" >> /toybox/root/host/fs/etc/passwd
 
-# adjusting filesystem-permissions
+# rm links and compiling new binaries
+WORKDIR /toybox/root/host/fs/usr/sbin
+RUN rm -rf *
+WORKDIR /toybox/root/host/fs/usr/bin
+RUN rm -rf *
+WORKDIR /toybox
+RUN make change sh \
+&& make change ls \
+&& make change cat \
+&& make change ps \
+&& make change id \
+&& make change env \
+&& make change chown \
+&& make change chmod \
+&& make change cp \
+&& make change date \
+&& make change mv \
+&& make change mkdir
+
+# cp new binaries and lib to fs
+RUN cp sh ls cat ps id env chown chmod cp date mv mkdir /toybox/root/host/fs/usr/bin/ \
+&& cp /lib/ld-musl-x86_64.so.1 /toybox/root/host/fs/lib/
+
+# adjusting root-filesystem permissions
 RUN chmod -R 700 /toybox/root/host/fs/root
 
 FROM scratch
