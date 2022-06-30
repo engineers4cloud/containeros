@@ -31,10 +31,10 @@ RUN echo "nopriv:x:101:nopriv" >> /toybox/root/host/fs/etc/group
 RUN echo "nopriv:x:101:101:nopriv:/dev/null:/sbin/nologin" >> /toybox/root/host/fs/etc/passwd
 
 # rm links and generate new binaries
-WORKDIR /toybox/root/host/fs/usr/sbin
-RUN rm -rf *
-WORKDIR /toybox/root/host/fs/usr/bin
-RUN rm -rf *
+#WORKDIR /toybox/root/host/fs/usr/sbin
+#RUN rm -rf *
+#WORKDIR /toybox/root/host/fs/usr/bin
+#RUN rm -rf *
 WORKDIR /toybox
 RUN make clean && make defconfig && make list
 RUN make change sh
