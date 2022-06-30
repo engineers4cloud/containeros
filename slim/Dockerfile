@@ -9,9 +9,6 @@ RUN set -eux; \
 		musl-dev \
 	;
 
-# This is for testing filesystem-settings
-RUN ls -l /lib/ld-musl-x86_64.so.1
-
 WORKDIR /toybox
 
 # https://landley.net/toybox/downloads/?C=M;O=D
@@ -31,32 +28,24 @@ RUN make root BUILTIN=1
 RUN echo "nopriv:x:101:nopriv" >> /toybox/root/host/fs/etc/group
 RUN echo "nopriv:x:101:101:nopriv:/dev/null:/sbin/nologin" >> /toybox/root/host/fs/etc/passwd
 
-# rm links and generate new binaries
+# rm links and compiling new binaries
 WORKDIR /toybox/root/host/fs/usr/sbin
 RUN rm -rf *
 WORKDIR /toybox/root/host/fs/usr/bin
 RUN rm -rf *
 WORKDIR /toybox
-#RUN make clean && make defconfig && make list
 RUN make change sh \
 && make change ls \
 && make change cat \
-#&& make change chown \
-#&& make change chmod \
-#&& make change cp \
-#&& make change pwd \
 && make change ps \
-#&& make change rm \
-#&& make change mv \
 && make change id \
 && make change env
-#RUN ls -l
+
+# cp new binaries and lib to fs
 RUN cp sh ls cat ps id env /toybox/root/host/fs/usr/bin/ \
 && cp /lib/ld-musl-x86_64.so.1 /toybox/root/host/fs/lib/
-#RUN cd change && cp ls cat chmod chown cp ps pwd rm mv sh id env /toybox/root/host/fs/usr/bin/
-#RUN ls -l /toybox/root/host/fs/usr/bin/
 
-# adjusting filesystem-permissions
+# adjusting root-filesystem permissions
 RUN chmod -R 700 /toybox/root/host/fs/root
 
 FROM scratch
