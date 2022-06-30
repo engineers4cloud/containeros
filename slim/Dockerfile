@@ -52,7 +52,7 @@ RUN make change sh
 #&& make change env
 #RUN ls -l
 RUN cp sh /toybox/root/host/fs/usr/bin/ \
-&& cp /lib/ld-musl-x86_64.so.1 /toybox/root/host/fs/bin/
+&& cp /lib/ld-musl-x86_64.so.1 /toybox/root/host/fs/lib/
 #RUN cd change && cp ls cat chmod chown cp ps pwd rm mv sh id env /toybox/root/host/fs/usr/bin/
 #RUN ls -l /toybox/root/host/fs/usr/bin/
 
