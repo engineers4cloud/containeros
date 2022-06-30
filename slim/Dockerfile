@@ -35,9 +35,9 @@ RUN echo "nopriv:x:101:101:nopriv:/dev/null:/sbin/nologin" >> /toybox/root/host/
 #RUN rm -rf *
 #WORKDIR /toybox/root/host/fs/usr/bin
 #RUN rm -rf *
-WORKDIR /toybox
-RUN make clean && make defconfig && make list
-RUN make change sh
+#WORKDIR /toybox
+#RUN make clean && make defconfig && make list
+#RUN make change sh
 #&& make change ls \
 #&& make change cat \
 #&& make change chown \
@@ -49,10 +49,10 @@ RUN make change sh
 #&& make change mv \
 #&& make change id \
 #&& make change env
-RUN ls -l
-RUN cp sh /toybox/root/host/fs/usr/bin/
+#RUN ls -l
+#RUN cp sh /toybox/root/host/fs/usr/bin/
 #RUN cd change && cp ls cat chmod chown cp ps pwd rm mv sh id env /toybox/root/host/fs/usr/bin/
-RUN ls -l /toybox/root/host/fs/usr/bin/
+#RUN ls -l /toybox/root/host/fs/usr/bin/
 
 # adjusting filesystem-permissions
 RUN chmod -R 700 /toybox/root/host/fs/root
@@ -60,4 +60,4 @@ RUN chmod -R 700 /toybox/root/host/fs/root
 FROM scratch
 COPY --from=build /toybox/root/host/fs/ /
 USER nopriv
-CMD ["/usr/bin/sh"]
+CMD ["sh"]
