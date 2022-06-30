@@ -24,6 +24,7 @@ RUN set -eux; \
 	rm toybox.tgz
 
 # Make root-fs
+RUN make defconfig
 RUN make root BUILTIN=1
 
 # Building nopriv group/user for Container
