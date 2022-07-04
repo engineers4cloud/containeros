@@ -1,4 +1,4 @@
-FROM alpine:latest AS build
+FROM alpine:latest AS builder
 
 RUN set -eux; \
 	apk add --no-cache \
