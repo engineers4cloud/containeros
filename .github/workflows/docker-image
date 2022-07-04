@@ -41,12 +41,3 @@ jobs:
     #    platforms: linux/amd64
     #    tags: engineers4cloud/containeros:slim-0.8.7
     #    push: true
-        
-    - name: Build and push aws-cli image
-      uses: docker/build-push-action@v3
-      with:
-        context: .
-        file: ./awscli/Dockerfile
-        platforms: linux/amd64
-        tags: engineers4cloud/containeros:awscli-0.8.7
-        push: true    
