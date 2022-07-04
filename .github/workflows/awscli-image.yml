@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build /awscli --file Dockerfile --tag engineers4cloud/containeros:awscli-0.8.7
+      run: docker build ./awscli/ --file Dockerfile --tag engineers4cloud/containeros:awscli-0.8.7
