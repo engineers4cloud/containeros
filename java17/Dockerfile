@@ -12,6 +12,6 @@ RUN wget -nv https://github.com/adoptium/temurin17-binaries/releases/download/jd
 FROM engineers4cloud/containeros:slim-0.8.7
 COPY --from=build /jre /
 COPY --from=build /lib/libz.so.1 /lib
-ENV PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/jre17/bin
+ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/jre17/bin
 USER nopriv
 CMD ["sh"]
