@@ -1,6 +1,5 @@
 FROM alpine:latest AS build
 
-ENV JRE_VER 
 RUN apk add --no-cache wget
 
 # Building nopriv group/user for Container
