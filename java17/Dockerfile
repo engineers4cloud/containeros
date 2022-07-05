@@ -1,5 +1,6 @@
 FROM alpine:latest AS build
 
+ENV JRE_VER 
 RUN apk add --no-cache wget
 
 WORKDIR /jre
