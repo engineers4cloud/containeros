@@ -25,5 +25,5 @@ jobs:
         context: .
         file: ./java17/Dockerfile
         platforms: linux/amd64
-        tags: engineers4cloud/containeros:java-17
+        tags: engineers4cloud/containeros:java-17.0.3_7
         push: true
