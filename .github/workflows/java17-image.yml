@@ -17,6 +17,11 @@ jobs:
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_TOKEN }}
     
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: cd java17 && docker build . --file Dockerfile --tag engineers4cloud/containeros:jre17
+    - name: Build and push jre image
+      uses: docker/build-push-action@v3
+      with:
+        context: .
+        file: ./java17/Dockerfile
+        platforms: linux/amd64
+        tags: engineers4cloud/containeros:java-17
+        push: true
