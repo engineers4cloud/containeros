@@ -19,7 +19,7 @@ jobs:
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_TOKEN }}
     
-    - name: Build and push jre image
+    - name: Build and push slim image
       uses: docker/build-push-action@v3
       with:
         context: .
