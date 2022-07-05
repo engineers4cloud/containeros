@@ -15,5 +15,6 @@ RUN wget -nv https://github.com/adoptium/temurin17-binaries/releases/download/jd
 
 FROM engineers4cloud/containeros:base-0.8.7
 COPY --from=build /jre /
+COPY --from=build /lib/libz.so.1 /lib
 USER nopriv
 CMD ["sh"]
