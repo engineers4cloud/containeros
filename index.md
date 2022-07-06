@@ -1,37 +1,15 @@
-## Welcome to GitHub Pages
+### What is containerOS ?
+A very slim container-OS based on Toybox
 
-You can use the [editor on GitHub](https://github.com/engineers4cloud/containeros/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+containerOS is based on the great work of the developers of [toybox](https://github.com/landley/toybox) with the utmost respect.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+containerOS has no package managers and nothing that is really not needed to run.
 
-### Markdown
+containerOS is stripped down to the bare essentials needed to run a container.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Image Derivates
+#### base
+The base image comes with the following set of statically linked binaries: sh, ls, cat, ps, id, env, chown, chmod, cp, date, mv, mkdir. 
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/engineers4cloud/containeros/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+#### slim
+The slim image is slightly smaller than the base image and comes with the following set of statically linked binaries: sh, ls, cat, ps, id, env. 
