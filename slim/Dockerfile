@@ -27,13 +27,15 @@ RUN make root BUILTIN=1
 RUN echo "nopriv:x:101:nopriv" >> /toybox/root/host/fs/etc/group \
 && echo "nopriv:x:101:101:nopriv:/dev/null:/sbin/nologin" >> /toybox/root/host/fs/etc/passwd
 
-# rm links and compiling new binaries
+# rm links
 RUN rm -f /toybox/root/host/fs/usr/sbin/* \
 && rm -f /toybox/root/host/fs/usr/bin/*
 
 # cp new binaries and lib to fs
 COPY binaries/* /toybox/root/host/fs/usr/bin/
-RUN cp /lib/ld-musl-x86_64.so.1 /toybox/root/host/fs/lib/ && chmod 555 /toybox/root/host/fs/usr/bin/* && ls -l /toybox/root/host/fs/usr/bin/
+RUN cp /lib/ld-musl-x86_64.so.1 /toybox/root/host/fs/lib/ \
+&& chmod 555 /toybox/root/host/fs/usr/bin/* \
+&& rm -f /toybox/root/host/fs/usr/bin/README*
 
 # adjusting root-filesystem permissions
 RUN chmod -R 700 /toybox/root/host/fs/root
