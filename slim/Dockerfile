@@ -24,18 +24,16 @@ RUN set -eux; \
 RUN make root BUILTIN=1
 
 # Building nopriv group/user for Container
-RUN echo "nopriv:x:101:nopriv" >> /toybox/root/host/fs/etc/group
-RUN echo "nopriv:x:101:101:nopriv:/dev/null:/sbin/nologin" >> /toybox/root/host/fs/etc/passwd
+RUN echo "nopriv:x:101:nopriv" >> /toybox/root/host/fs/etc/group \
+&& echo "nopriv:x:101:101:nopriv:/dev/null:/sbin/nologin" >> /toybox/root/host/fs/etc/passwd
 
 # rm links and compiling new binaries
-WORKDIR /toybox/root/host/fs/usr/sbin
-RUN rm -rf *
-WORKDIR /toybox/root/host/fs/usr/bin
-RUN rm -rf *
+RUN rm -f /toybox/root/host/fs/usr/sbin/* \
+&& rm -f /toybox/root/host/fs/usr/bin/*
 
 # cp new binaries and lib to fs
 COPY binaries/* /toybox/root/host/fs/usr/bin/
-RUN cp /lib/ld-musl-x86_64.so.1 /toybox/root/host/fs/lib/ && ls -l /toybox/root/host/fs/usr/bin/
+RUN cp /lib/ld-musl-x86_64.so.1 /toybox/root/host/fs/lib/ && chmod 555 /toybox/root/host/fs/usr/bin/* && ls -l /toybox/root/host/fs/usr/bin/
 
 # adjusting root-filesystem permissions
 RUN chmod -R 700 /toybox/root/host/fs/root
