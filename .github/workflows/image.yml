@@ -26,3 +26,12 @@ jobs:
         platforms: linux/amd64
         tags: engineers4cloud/containeros:slim-0.8.7
         push: true
+        
+    - name: Build and push base image
+      uses: docker/build-push-action@v3
+      with:
+        context: .
+        file: ./base/Dockerfile
+        platforms: linux/amd64
+        tags: engineers4cloud/containeros:base-0.8.7
+        push: true    
