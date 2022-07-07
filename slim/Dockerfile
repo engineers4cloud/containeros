@@ -35,7 +35,7 @@ RUN rm -rf *
 
 # cp new binaries and lib to fs
 COPY binaries/* /toybox/root/host/fs/usr/bin/
-RUN cp /lib/ld-musl-x86_64.so.1 /toybox/root/host/fs/lib/
+RUN cp /lib/ld-musl-x86_64.so.1 /toybox/root/host/fs/lib/ && ls -l /toybox/root/host/fs/usr/bin/
 
 # adjusting root-filesystem permissions
 RUN chmod -R 700 /toybox/root/host/fs/root
