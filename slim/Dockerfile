@@ -1,5 +1,8 @@
 FROM alpine:latest AS build
 
+ENV TOYBOX_VERSION 0.8.7
+ENV DERIVATE slim
+
 RUN set -eux; \
 	apk add --no-cache \
 		bash \
@@ -10,10 +13,6 @@ RUN set -eux; \
 	;
 
 WORKDIR /toybox
-
-# https://landley.net/toybox/downloads/?C=M;O=D
-# https://github.com/landley/toybox/releases
-ENV TOYBOX_VERSION 0.8.7
 
 RUN set -eux; \
 	wget -O toybox.tgz "https://landley.net/toybox/downloads/toybox-$TOYBOX_VERSION.tar.gz"; \
@@ -32,7 +31,7 @@ RUN rm -f /toybox/root/host/fs/usr/sbin/* \
 && rm -f /toybox/root/host/fs/usr/bin/*
 
 # cp new binaries and lib to fs
-COPY binaries/slim/* /toybox/root/host/fs/usr/bin/
+COPY binaries/$DERIVATE/* /toybox/root/host/fs/usr/bin/
 RUN cp /lib/ld-musl-x86_64.so.1 /toybox/root/host/fs/lib/ \
 && chmod 555 /toybox/root/host/fs/usr/bin/*
 
@@ -40,7 +39,7 @@ RUN cp /lib/ld-musl-x86_64.so.1 /toybox/root/host/fs/lib/ \
 RUN chmod -R 700 /toybox/root/host/fs/root
 
 FROM scratch
-LABEL vendor="engineers4cloud" name="containeros" derivate="slim" version="0.8.7"
+LABEL vendor="engineers4cloud" name="containeros" maintainer="m4rkus@engineers4cloud"
 COPY --from=build /toybox/root/host/fs/ /
 USER nopriv
 CMD ["sh"]
