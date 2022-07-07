@@ -41,6 +41,7 @@ RUN cp /lib/ld-musl-x86_64.so.1 /toybox/root/host/fs/lib/ \
 RUN chmod -R 700 /toybox/root/host/fs/root
 
 FROM scratch
+LABEL vendor="engineers4cloud" name="containeros" derivate="slim" version="0.8.7"
 COPY --from=build /toybox/root/host/fs/ /
 USER nopriv
 CMD ["sh"]
