@@ -32,7 +32,7 @@ RUN rm -f /toybox/root/host/fs/usr/sbin/* \
 && rm -f /toybox/root/host/fs/usr/bin/*
 
 # cp new binaries and lib to fs
-COPY binaries/* /toybox/root/host/fs/usr/bin/
+COPY binaries/sh ls cat ps id env /toybox/root/host/fs/usr/bin/
 RUN cp /lib/ld-musl-x86_64.so.1 /toybox/root/host/fs/lib/ \
 && chmod 555 /toybox/root/host/fs/usr/bin/* \
 && rm -f /toybox/root/host/fs/usr/bin/README*
