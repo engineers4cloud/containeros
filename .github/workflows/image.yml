@@ -34,4 +34,13 @@ jobs:
         file: ./base/Dockerfile
         platforms: linux/amd64
         tags: engineers4cloud/containeros:base-0.8.7
+        push: true
+        
+    - name: Build and push java17 image
+      uses: docker/build-push-action@v3
+      with:
+        context: .
+        file: ./java17/Dockerfile
+        platforms: linux/amd64
+        tags: engineers4cloud/containeros:java-17.0.3_7
         push: true    
