@@ -24,7 +24,7 @@ jobs:
         context: .
         file: ./slim/Dockerfile
         platforms: linux/amd64
-        tags: engineers4cloud/containeros:slim-0.8.7
+        tags: engineers4cloud/containeros:slim-0.8.8
         push: true
         
     - name: Build and push base image
