@@ -1,7 +1,7 @@
 FROM alpine:latest AS build
 
-ENV TOYBOX_VERSION 0.8.7
-ENV DERIVATE slim
+ENV TOYBOX_VERSION 0.8.8
+ENV DERIVATE slim_0.8.8
 
 RUN set -eux; \
 	apk add --no-cache \
